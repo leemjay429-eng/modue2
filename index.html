@@ -1,0 +1,1133 @@
+<script>
+  (function(){
+    try{
+      if(!document.querySelector('meta[name="viewport"]')){
+        var m=document.createElement('meta');
+        m.setAttribute('name','viewport');
+        m.setAttribute('content','width=device-width, initial-scale=1');
+        (document.head||document.getElementsByTagName('head')[0]||document.documentElement).appendChild(m);
+      }
+    }catch(e){}
+  })();
+  </script>
+  
+<div class="contents_div">
+<style>
+/* ============================================================
+   전남광주통합특별시 한 컷 브리핑 — 위클리 zip 7월 5주
+   컨셉: 클립보드 위 메모지 (퍼플 보드 + 노란 줄노트 + 스티커 라벨)
+   prefix : jn75-      scope : .contents_div      no box-shadow
+   max-width 800px / 좌우 50px / 섹션 상하 70px
+   ============================================================ */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+/* 페이퍼로지(Paperozi) — h2 타이틀용 */
+@font-face{font-family:'Paperozi'; src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-1Thin.woff2') format('woff2'); font-weight:100; font-display:swap;}
+@font-face{font-family:'Paperozi'; src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-2ExtraLight.woff2') format('woff2'); font-weight:200; font-display:swap;}
+@font-face{font-family:'Paperozi'; src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-3Light.woff2') format('woff2'); font-weight:300; font-display:swap;}
+@font-face{font-family:'Paperozi'; src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2') format('woff2'); font-weight:400; font-display:swap;}
+@font-face{font-family:'Paperozi'; src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-5Medium.woff2') format('woff2'); font-weight:500; font-display:swap;}
+@font-face{font-family:'Paperozi'; src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-6SemiBold.woff2') format('woff2'); font-weight:600; font-display:swap;}
+@font-face{font-family:'Paperozi'; src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-7Bold.woff2') format('woff2'); font-weight:700; font-display:swap;}
+@font-face{font-family:'Paperozi'; src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-8ExtraBold.woff2') format('woff2'); font-weight:800; font-display:swap;}
+@font-face{font-family:'Paperozi'; src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-9Black.woff2') format('woff2'); font-weight:900; font-display:swap;}
+@font-face{
+  font-family:'GmarketSansBold';
+  src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+  font-weight:400; font-style:normal; font-display:swap;
+}
+
+/* ---------- 토큰 ---------- */
+.contents_div{
+  --jn-ink:#1C1C1C;
+  --jn-ink2:#424242;
+  --jn-pp:#7778FE;      /* 보드 퍼플 */
+  --jn-bl:#5A5DF3;      /* 타이틀 블루 */
+  --jn-paper:#FFF6C4;   /* 노트 종이 */
+  --jn-line:rgba(90,93,243,.15);
+  --jn-gr:#a7f48f;
+  --jn-or:#FF714B;
+  --jn-pk:#feb6f9;
+  --jn-sk:#9feaff;
+  --jn-lv:#ce99ff;
+  --jn-pc:#ffcf88;
+  --jn-yl:#FFEF80;     /* 하이라이트 옐로 — 퍼플 배경 위 강조 */
+  --jn-wt:#FFFFFF;
+  --jn-baby:#DBF2FB;    /* 베이비 블루 — 섹션 밴드 */
+  --jn-tear:url('img/찢어진효과.webp');
+  --jn-gut:50px;        /* 좌우 여백 */
+  --jn-kick:32px;       /* 넘버링 원 · 키커 캡슐 공통 높이 */
+  --jn-band:70px;       /* 섹션 상하 여백 */
+  --jn-disp:'GmarketSansBold','Pretendard',-apple-system,sans-serif;
+  --jn-h2:'Paperozi','GmarketSansBold','Pretendard',-apple-system,sans-serif;
+  --jn-body:'Pretendard',-apple-system,BlinkMacSystemFont,'Malgun Gothic','맑은 고딕',sans-serif;
+}
+
+/* ---------- 스코프 리셋 ---------- */
+.contents_div .jn75-wrap,
+.contents_div .jn75-wrap *,
+.contents_div .jn75-wrap *::before,
+.contents_div .jn75-wrap *::after{box-sizing:border-box;}
+/* 리셋은 :where()로 특이도 0 — 아래 컴포넌트 규칙을 덮어쓰지 않게 함 */
+.contents_div .jn75-wrap :where(h1,h2,h3,p,ul,ol,li,figure,dl,dt,dd){margin:0; padding:0;}
+.contents_div .jn75-wrap :where(ul,ol){list-style:none;}
+.contents_div .jn75-wrap :where(img){max-width:100%; display:block; border:0;}
+.contents_div .jn75-wrap :where(button){font:inherit; background:none; border:0;}
+
+/* ---------- 래퍼(800px 캡) ---------- */
+.contents_div .jn75-wrap{
+  width:100%; max-width:800px; margin:0 auto; background:transparent; overflow:hidden;
+  font-family:var(--jn-body); color:var(--jn-ink);
+  font-size:17px; line-height:1.75; letter-spacing:-.02em;
+  -webkit-text-size-adjust:100%; word-break:keep-all;
+}
+.contents_div h1.jn75-sr{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
+}
+
+/* ---------- 섹션 밴드 공통 ---------- */
+/* 섹션 상하 여백 — 밴드값 + 15px (웹·태블릿·모바일 공통) */
+.contents_div .jn75-sec{padding:calc(var(--jn-band) + 15px) var(--jn-gut);}
+.contents_div .jn75-sec--paper{
+  position:relative;
+  background-color:var(--jn-paper);
+  background-image:repeating-linear-gradient(
+    to bottom, transparent 0, transparent 33px,
+    var(--jn-line) 33px, var(--jn-line) 34px);
+}
+.contents_div .jn75-sec--paper::before{
+  content:''; position:absolute; top:0; bottom:0; left:26px;
+  width:1px; background:rgba(255,113,75,.5);
+}
+.contents_div .jn75-sec--light{background:#EFEFEF;}
+/* 섹션1: 위(밝게) → 아래(어둡게) */
+.contents_div .jn75-sec--light.g-down{
+  background:linear-gradient(180deg, #F9F9F9 0%, #EFEFEF 100%);
+}
+/* 섹션3: 위(어둡게) → 아래(밝게) — 섹션1의 반대 */
+.contents_div .jn75-sec--light.g-up{
+  background:linear-gradient(180deg, #EFEFEF 0%, #F9F9F9 100%);
+}
+
+/* 섹션 경계에 겹쳐지는 찢어진 종이 효과 */
+.contents_div .jn75-tear{position:relative; z-index:999; height:0; line-height:0;}
+.contents_div .jn75-tear::before{
+  content:''; position:absolute; top:0; left:0; width:100%;
+  padding-top:8.608%;                 /* 136 / 1580 */
+  transform:translateY(-50%); pointer-events:none;
+  background:var(--jn-tear) center top / 100% 100% no-repeat;
+}
+.contents_div .jn75-tear--flip::before{transform:translateY(-50%) scaleY(-1);}
+.contents_div .jn75-sec--board{background:var(--jn-pp);}
+.contents_div .jn75-sec--baby{background:var(--jn-baby);}
+
+/* ---------- 히어로 ---------- */
+.contents_div .jn75-hero{background:var(--jn-pp); line-height:0;}
+
+/* ---------- 앵커 링크 바 (한 줄 · 흰 텍스트) ---------- */
+.contents_div .jn75-nav{background:var(--jn-pp); padding:0 var(--jn-gut); color:#fff;}
+.contents_div .jn75-nav-list{display:grid; grid-template-columns:repeat(5,1fr);}
+.contents_div .jn75-nav-list li + li{border-left:1px solid rgba(255,255,255,.4);}
+.contents_div .jn75-nav button.jn75-nav-btn{
+  display:flex; align-items:center; justify-content:center;
+  width:100%; min-height:58px; padding:16px 10px; cursor:pointer;
+  background:transparent; border:0; color:#fff !important; text-align:center;
+  font-family:var(--jn-body); font-size:16px; font-weight:700;
+  line-height:1.4; letter-spacing:-.03em; word-break:keep-all;
+}
+.contents_div .jn75-nav button.jn75-nav-btn:focus-visible{outline:2px solid #fff; outline-offset:-4px;}
+/* 내비 라벨 : 기본은 전체 라벨, 모바일에서 축약 라벨로 교체 */
+.contents_div .jn75-nav-btn .jn75-nv-s{display:none;}
+
+/* ---------- 섹션 헤드(키커 그룹) ---------- */
+.contents_div .jn75-head{margin-bottom:28px;}
+.contents_div .jn75-kicker{
+  display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:14px;
+}
+.contents_div .jn75-no{
+  flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center;
+  width:var(--jn-kick); height:var(--jn-kick); border-radius:999px;
+  padding:4px 0 0;   /* 지마켓산스 디센더 보정 — 글자 광학 중앙 정렬 */
+  border:1px solid var(--jn-ink); background:var(--jn-wt);
+  font-family:var(--jn-disp); font-size:14px; line-height:1; color:var(--jn-ink);
+}
+.contents_div .jn75-eyebrow{
+  position:relative; display:inline-flex; align-items:center;
+  min-height:var(--jn-kick); border-radius:999px;
+  padding:4px 16px 0;   /* 지마켓산스 디센더 보정 — 글자 광학 중앙 정렬 */
+  border:1px solid var(--jn-ink);
+  font-family:var(--jn-disp); font-size:15px; line-height:1.2;
+  color:var(--jn-ink); letter-spacing:.01em; word-break:keep-all;
+}
+.contents_div .jn75-eyebrow.k1{background:var(--jn-gr);}
+.contents_div .jn75-eyebrow.k2{background:var(--jn-or); color:var(--jn-wt);}
+.contents_div .jn75-eyebrow.k3{background:var(--jn-sk);}
+.contents_div .jn75-eyebrow.k4{background:var(--jn-pk);}
+.contents_div .jn75-eyebrow.k5{background:var(--jn-pc);}
+.contents_div .jn75-head h2{
+  font-family:var(--jn-h2); font-weight:800; font-size:28px; line-height:1.35;
+  letter-spacing:-.01em; word-break:keep-all;
+}
+.contents_div .jn75-sec--paper .jn75-head h2,
+.contents_div .jn75-sec--baby .jn75-head h2,
+.contents_div .jn75-sec--light .jn75-head h2{color:var(--jn-bl);}
+.contents_div .jn75-sec--board .jn75-head h2{color:var(--jn-wt);}
+.contents_div .jn75-lead{
+  margin-top:12px !important; font-size:16px; line-height:1.7; word-break:keep-all;
+}
+.contents_div .jn75-sec--paper .jn75-lead,
+.contents_div .jn75-sec--baby .jn75-lead,
+.contents_div .jn75-sec--light .jn75-lead{color:var(--jn-ink2);}
+.contents_div .jn75-sec--board .jn75-lead{color:rgba(255,255,255,.92);}
+
+/* ---------- 카드 헤드: 제목(좌) + 캡슐(우) 한 행 ---------- */
+.contents_div .jn75-cardhead{
+  display:flex; flex-direction:row-reverse; align-items:flex-start;
+  justify-content:space-between; gap:16px;
+}
+.contents_div .jn75-cardhead .jn75-tag{flex:0 0 auto; margin-bottom:0;}
+/* 이미지 프레임이 없는 카드 — 타이틀 위 여백 10px */
+.contents_div .jn75-card > .jn75-hd.br + .jn75-cardhead{margin-top:6px;}
+
+/* ---------- 카드 이미지 프레임 (16:10) ---------- */
+.contents_div .jn75-fig{
+  position:relative; width:100%; margin-bottom:22px; overflow:hidden;
+  border:1px solid var(--jn-ink); border-radius:4px;
+}
+.contents_div .jn75-fig::before{content:''; display:block; padding-top:62.5%;} /* 웹 — 전 카드 16:10 */
+.contents_div .jn75-fig img{
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  object-fit:cover; object-position:center;
+}
+/* 사진 우측 상단 설명 캡션 */
+.contents_div .jn75-figcap{
+  position:absolute; top:8px; right:8px; z-index:2;
+  max-width:70%; margin:0; padding:4px 8px;
+  background:rgba(0,0,0,.42);
+  font-size:11px; line-height:1.35; letter-spacing:-.2px;
+  color:#fff; text-align:right; word-break:keep-all;
+}
+/* ---------- 카드 ---------- */
+.contents_div .jn75-card{
+  position:relative; background:var(--jn-wt);
+  border:1px solid var(--jn-ink); border-radius:4px;
+  padding:30px 28px; margin-bottom:34px;
+}
+.contents_div .jn75-card:last-child{margin-bottom:0;}
+/* 선택박스 핸들 — 이 페이지의 시그니처 */
+.contents_div .jn75-hd{
+  position:absolute; z-index:2; width:9px; height:9px;
+  background:var(--jn-wt); border:1px solid var(--jn-ink);
+}
+.contents_div .jn75-hd.tl{top:-6px; left:-6px;}
+.contents_div .jn75-hd.tr{top:-6px; right:-6px;}
+.contents_div .jn75-hd.bl{bottom:-6px; left:-6px;}
+.contents_div .jn75-hd.br{bottom:-6px; right:-6px;}
+
+.contents_div .jn75-tag{
+  display:inline-block; margin-bottom:14px;
+  padding:8px 17px 9px; border-radius:999px; border:0;
+  font-size:13.5px; font-weight:700; line-height:1.25; letter-spacing:-.02em;
+  word-break:keep-all;
+}
+.contents_div .jn75-tag.t-sky{background:var(--jn-sk);}
+.contents_div .jn75-tag.t-pink{background:var(--jn-pk);}
+.contents_div .jn75-tag.t-lv{background:var(--jn-lv); color:var(--jn-wt);}
+.contents_div .jn75-tag.t-or{background:var(--jn-or); color:var(--jn-wt);}
+.contents_div .jn75-tag.t-gr{background:var(--jn-gr);}
+.contents_div .jn75-tag.t-pc{background:var(--jn-pc);}
+
+.contents_div .jn75-card h3{
+  font-family:var(--jn-disp); font-size:21px; line-height:1.45;
+  color:var(--jn-ink); letter-spacing:-.02em; word-break:keep-all;
+}
+.contents_div .jn75-rule{
+  height:0; border:0; border-top:1px solid rgba(28,28,28,.38);
+  margin:18px 2px 20px;
+}
+.contents_div .jn75-card p{font-size:17px; line-height:1.8; color:var(--jn-ink2);}
+.contents_div .jn75-card p + p{margin-top:12px !important;}
+/* 정보 박스 바로 아래 문단 — 박스 위 여백(20px)과 대칭 */
+.contents_div .jn75-card ul.jn75-box + p{margin-top:20px !important;}
+
+/* 정보 박스 */
+.contents_div ul.jn75-box{
+  margin-top:20px; padding:2px 20px;
+  background:#F5F5F5; border:1px solid rgba(28,28,28,.28); border-radius:8px;
+}
+.contents_div .jn75-box li{
+  display:flex; align-items:flex-start; gap:12px;
+  padding:11px 0; font-size:16px; line-height:1.5; color:var(--jn-ink);
+  border-bottom:1px solid rgba(28,28,28,.16); word-break:keep-all;
+}
+.contents_div .jn75-box li:last-child{border-bottom:0;}
+.contents_div .jn75-box li b{font-weight:700;}
+.contents_div .jn75-lb{
+  flex:0 0 auto; display:inline-flex; align-items:center; justify-content:center;
+  height:24px; padding:0 11px; margin-top:0; border-radius:999px;
+  background:var(--jn-bl); color:var(--jn-wt);
+  font-size:13px; font-weight:700; line-height:1; letter-spacing:-.02em;
+  white-space:nowrap;
+}
+.contents_div .jn75-chk{
+  flex:0 0 auto; width:20px; height:20px; margin-top:2px; border-radius:50%;
+  border:1px solid var(--jn-ink); background:var(--jn-pc);
+  display:inline-flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:700; line-height:1;
+}
+
+/* CTA */
+.contents_div .jn75-cta{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  margin-top:24px; padding:15px 20px;
+  background:var(--jn-bl); color:var(--jn-wt) !important; text-decoration:none;
+  border:1px solid var(--jn-ink); border-radius:8px;
+  font-size:16px; font-weight:700; letter-spacing:-.02em; word-break:keep-all;
+  transition:background-color .15s ease, transform .15s ease;
+}
+.contents_div .jn75-cta:hover{background:var(--jn-pp); transform:translateY(-2px);}
+/* editor’s pick 등 보조 CTA — 본 버튼과 구분되는 오렌지 */
+.contents_div a.jn75-cta--pick{background:var(--jn-or);}
+.contents_div a.jn75-cta--pick:hover{background:var(--jn-bl);}
+.contents_div .jn75-cta:focus-visible{outline:3px solid var(--jn-ink); outline-offset:3px;}
+.contents_div .jn75-cta .jn75-ar{font-family:var(--jn-disp); font-size:17px; line-height:1; flex:0 0 auto;}
+/* 문구가 두 줄로 접혀도 화살표는 오른쪽 끝에 고정 */
+.contents_div .jn75-cta > span:not(.jn75-ar){flex:1 1 auto; min-width:0; text-align:left;}
+/* CTA 2개 — 웹에서 1행 2열, 높이는 flex stretch로 자동 균등 */
+.contents_div .jn75-ctas{display:flex; gap:14px; margin-top:24px;}
+.contents_div .jn75-ctas .jn75-cta{flex:1 1 0; min-width:0; margin-top:0;}
+
+/* ---------- 푸터 ---------- */
+.contents_div .jn75-foot{padding:0 var(--jn-gut) var(--jn-band); background:var(--jn-pp); color:var(--jn-wt); text-align:center;}
+.contents_div .jn75-foot h2{
+  font-family:var(--jn-h2); font-weight:800; font-size:31px; line-height:1.4;
+  letter-spacing:-.01em; word-break:keep-all;
+  max-width:520px; margin-left:auto; margin-right:auto;
+}
+.contents_div .jn75-foot h2 em{font-style:normal; color:var(--jn-yl);}
+/* 모바일 전용 강제 줄바꿈 : 웹에서는 줄을 나누지 않음 */
+.contents_div .jn75-br-m{display:none;}
+/* 푸터 h2는 웹에서도 모바일과 동일한 3줄 구성 */
+.contents_div .jn75-foot h2 .jn75-br-m{display:inline;}
+.contents_div ul.jn75-tags{
+  display:flex; flex-wrap:wrap; justify-content:center; gap:8px;
+  margin-top:40px; padding-top:24px;
+  border-top:1px solid rgba(255,255,255,.45);
+}
+.contents_div .jn75-tags li{
+  padding:6px 13px 7px; border:1px solid rgba(255,255,255,.55); border-radius:999px;
+  font-size:12.5px; line-height:1.35; color:rgba(255,255,255,.92); white-space:nowrap;
+}
+
+/* ============================================================
+   반응형 : 820px(태블릿) → 600px(모바일) → 480px(내비 2열) → 380px(소형)
+   ============================================================ */
+
+/* ---------- 태블릿 ---------- */
+@media (max-width:820px){
+  .contents_div{--jn-gut:38px; --jn-band:58px;}
+  .contents_div .jn75-head h2{font-size:26px;}
+  .contents_div .jn75-card{padding:28px 24px; margin-bottom:32px;}
+  .contents_div .jn75-foot h2{font-size:28px;}
+}
+
+/* ---------- 모바일 ---------- */
+@media (max-width:600px){
+  .contents_div{--jn-gut:20px; --jn-band:44px; --jn-kick:22px;}
+  .contents_div .jn75-wrap{font-size:14px; line-height:1.7;}
+  /* 줄노트 간격도 본문 크기에 비례해 축소 (34px → 28px) */
+  .contents_div .jn75-sec--paper{
+    background-image:repeating-linear-gradient(
+      to bottom, transparent 0, transparent 27px,
+      var(--jn-line) 27px, var(--jn-line) 28px);
+  }
+  /* [모바일] 줄노트 좌측 붉은 여백선 숨김 */
+  .contents_div .jn75-sec--paper::before{display:none;}
+
+  /* 내비 */
+  .contents_div .jn75-nav{padding:0 var(--jn-gut);}
+  .contents_div .jn75-nav button.jn75-nav-btn{min-height:48px; padding:11px 6px; font-size:12px; line-height:1.35;}
+
+  /* 섹션 헤드 — 작아진 원/캡슐에 맞춰 광학 중앙 보정 4px → 3px */
+  .contents_div .jn75-head{margin-bottom:22px;}
+  .contents_div .jn75-kicker{gap:8px; row-gap:8px; margin-bottom:12px;}
+  .contents_div .jn75-no{font-size:9.5px; line-height:1; padding:2px 0 0;}
+  .contents_div .jn75-eyebrow{font-size:10px; line-height:1; padding:2px 10px 0;}
+  .contents_div .jn75-head h2{font-size:22px; line-height:1.4;}
+  .contents_div .jn75-lead{font-size:13.5px; margin-top:10px !important;}
+
+
+  /* 카드 */
+  .contents_div .jn75-card{padding:22px 17px; margin-bottom:30px;}
+  .contents_div .jn75-fig{margin-bottom:18px;}
+  /* [모바일] 기본 1:0.75, 틈새돌봄·민화만 16:10.9 */
+  .contents_div .jn75-fig::before{padding-top:75%;}
+  .contents_div .jn75-fig--wide::before{padding-top:68.125%;}
+  .contents_div .jn75-figcap{top:6px; right:6px; padding:3px 6px; font-size:10px; max-width:80%;}
+  .contents_div .jn75-cardhead{flex-direction:column; align-items:flex-start; gap:0;}
+  .contents_div .jn75-card > .jn75-hd.br + .jn75-cardhead{margin-top:3px;}
+  .contents_div .jn75-cardhead .jn75-tag{margin-bottom:12px;}
+  /* [모바일] h3 위 캡슐 — 현재 대비 80% 축소 + 도형/텍스트 중앙정렬 */
+  .contents_div .jn75-tag{
+    display:inline-flex; align-items:center; justify-content:center;
+    height:24px; padding:0 11px; margin-bottom:12px;
+    font-size:10px; line-height:1;
+  }
+  .contents_div .jn75-card h3{font-size:17px; line-height:1.5;}
+  /* PC 폭 기준 강제 줄바꿈은 기본적으로 해제하되,
+     카드 제목(h3)은 모바일에서도 지정한 자리에서 그대로 줄을 나눔 */
+  .contents_div .jn75-br{display:none;}
+  .contents_div .jn75-card h3 .jn75-br{display:inline;}
+  /* 모바일에서만 줄을 나누는 지점 (웹에서는 이어서 표기) */
+  .contents_div .jn75-br-m{display:inline;}
+  /* 푸터 제목은 모바일에서 3줄 고정 → 기존 강제 줄바꿈도 함께 살림 */
+  .contents_div .jn75-foot h2 .jn75-br{display:inline;}
+  .contents_div .jn75-rule{margin:15px 2px 16px;}
+  .contents_div .jn75-card p{font-size:14px; line-height:1.75; overflow-wrap:break-word;}
+  .contents_div .jn75-card p + p{margin-top:10px !important;}
+  /* [모바일] 정보 박스 바로 아래 문단이 붙어 보여 상단 여백 부여
+     (박스 위 여백 16px과 대칭) */
+  .contents_div .jn75-card ul.jn75-box + p{margin-top:16px !important;}
+
+  /* 정보 박스 — 라벨 오른쪽 본문이 줄바꿈되어도 왼쪽 끝선 유지 */
+  .contents_div ul.jn75-box{padding:2px 15px; margin-top:16px;}
+  .contents_div .jn75-box li{padding:9px 0; font-size:14px; line-height:1.5; gap:9px; overflow-wrap:break-word;}
+  .contents_div .jn75-box li > span:last-child{flex:1 1 auto; min-width:0;}
+  /* 라벨 캡슐 — 가로 배치 행에서 캡슐 글자 밑선을 옆 본문 첫 줄 밑선에 맞춤(3px 내림) */
+  .contents_div .jn75-lb{height:17px; padding:0 7px; font-size:10px; font-weight:400; margin-top:3px;}
+  .contents_div .jn75-chk{width:17px; height:17px; margin-top:2px; font-size:10px;}
+
+  /* CTA */
+  .contents_div .jn75-cta{font-size:14px; line-height:1.45; padding:13px 15px; margin-top:20px; gap:10px;}
+  /* [모바일] CTA 2개는 폭이 좁아 1열로 쌓음 */
+  .contents_div .jn75-ctas{flex-direction:column; gap:12px; margin-top:20px;}
+
+  /* 푸터 */
+  .contents_div .jn75-foot h2{font-size:21px; line-height:1.42;}
+  .contents_div ul.jn75-tags{gap:6px; margin-top:30px; padding-top:20px;}
+  .contents_div .jn75-tags li{font-size:11px; padding:5px 10px 6px;}
+}
+
+/* ---------- 좁은 화면 : 내비는 축약 라벨로 5칸 1줄 유지 ---------- */
+@media (max-width:480px){
+  /* [모바일] 내비 좌우 패딩 제거 후 버튼에 패딩 부여 */
+  .contents_div .jn75-nav{padding:0;}
+  .contents_div .jn75-nav-list{grid-template-columns:repeat(5,1fr);}
+  /* 라벨을 축약형으로 교체 — 5칸이 한 줄에 들어가도록 */
+  .contents_div .jn75-nav-btn .jn75-nv-f{display:none;}
+  .contents_div .jn75-nav-btn .jn75-nv-s{display:inline;}
+  .contents_div .jn75-nav button.jn75-nav-btn{
+    min-height:44px; padding:10px 4px; font-size:12.5px;
+    white-space:nowrap; letter-spacing:-.02em;
+  }
+}
+
+/* ---------- 소형 단말 ---------- */
+@media (max-width:380px){
+  .contents_div{--jn-gut:16px; --jn-band:38px;}
+  .contents_div .jn75-nav button.jn75-nav-btn{padding:10px 2px; font-size:11.5px;}
+  .contents_div .jn75-head h2{font-size:21.5px;}
+  .contents_div .jn75-lead{font-size:13px;}
+  .contents_div .jn75-card{padding:19px 14px; margin-bottom:26px;}
+  .contents_div .jn75-card h3{font-size:16px;}
+  .contents_div .jn75-card p{font-size:13.5px;}
+  .contents_div ul.jn75-box{padding:1px 12px;}
+  .contents_div .jn75-box li{font-size:13.5px; gap:8px; padding:8px 0;}
+  .contents_div .jn75-cta{font-size:13.5px; padding:12px 13px;}
+  .contents_div .jn75-foot h2{font-size:18px;}
+  .contents_div .jn75-tags li{font-size:10.5px; padding:5px 9px 6px;}
+}
+@media (prefers-reduced-motion:reduce){
+  .contents_div .jn75-cta{transition:none;}
+  .contents_div .jn75-cta:hover{transform:none;}
+}
+</style>
+
+<article class="jn75-wrap" itemscope itemtype="https://schema.org/Article">
+  <meta itemprop="datePublished" content="2026-07-26">
+  <meta itemprop="inLanguage" content="ko-KR">
+  <meta itemprop="author" content="전남광주통합특별시 언론담당관">
+  <meta itemprop="publisher" content="전남광주통합특별시">
+
+  <!-- ===== 히어로 ===== -->
+  <header class="jn75-hero">
+    <h1 class="jn75-sr" itemprop="headline">전남광주통합특별시 한 컷 브리핑 — 위클리 zip 7월 5주 이슈 총정리</h1>
+    <!-- ===== jn75-heroact START ===== -->
+    <div class="contents_div">
+      <style>
+      .contents_div .jn75-heroact{
+        --jn75-heroact-max: 800px;
+        --jn75-heroact-ratio: 1600 / 1700;
+      }
+      .contents_div .jn75-heroact,
+      .contents_div .jn75-heroact *{ box-sizing:border-box; }
+
+      .contents_div .jn75-heroact{
+        position:relative;
+        width:100%;
+        max-width:var(--jn75-heroact-max);
+        margin:0 auto;
+        aspect-ratio:var(--jn75-heroact-ratio);
+        overflow:hidden;               /* 오른쪽에서 날아오는 레이어가 페이지 폭을 넘지 않도록 */
+      }
+
+      /* 세 장 모두 1600×1700 동일 캔버스 → 한 박스에 겹쳐 정합 유지 */
+      .contents_div .jn75-heroact__layer{
+        position:absolute; inset:0;
+        width:100%; height:100%;
+        display:block;
+        object-fit:cover;
+        user-select:none;
+        -webkit-user-drag:none;
+        will-change:transform,opacity;
+        backface-visibility:hidden;
+        transform:translateZ(0);
+      }
+
+      /* 변형 원점 = 각 레이어의 실제 글자 중심 */
+      /* 배경은 고정 — 어떤 애니메이션도 걸지 않는다 */
+      .contents_div .jn75-heroact__h1{ transform-origin:50.7% 45.5%; opacity:0; transform:scale(.28) rotate(-9deg); }
+      .contents_div .jn75-heroact__h2{ transform-origin:50.7% 65.2%; opacity:0; transform:translateX(74%) rotate(5.5deg); }
+
+      .contents_div .jn75-heroact.jn75-heroact--play .jn75-heroact__h1{
+        /* 전체 easing은 linear, 구간별 easing은 키프레임 안에서 지정한다 */
+        animation:
+          jn75-heroact-h1-pop 980ms linear 120ms both,
+          jn75-heroact-h1-fade   450ms cubic-bezier(.4,0,.2,1) 120ms both;
+      }
+      .contents_div .jn75-heroact.jn75-heroact--play .jn75-heroact__h2{
+        /* 이동과 페이드를 분리해야 중간 키프레임 때문에 생기는 속도 단절이 없다 */
+        animation:
+          jn75-heroact-h2-fly 1030ms linear 740ms both,
+          jn75-heroact-h2-fade    280ms cubic-bezier(.4,0,.2,1) 740ms both;
+      }
+
+      /* 배경에서 확 튀어나왔다가 제 크기로 가라앉기
+         · 55%에서 최대(1.09배)까지 감속하며 도달 → 속도 0
+         · 55%부터 다시 0에서 출발해 감속하며 1.0으로 복귀
+         두 구간 모두 경계에서 속도가 0이라 방향이 꺾이지 않는다 */
+      @keyframes jn75-heroact-h1-pop{
+        0%  { transform:scale(.28) rotate(-9deg);
+              animation-timing-function:cubic-bezier(.12,.72,.34,1); }
+        55% { transform:scale(1.09) rotate(1.2deg);
+              animation-timing-function:cubic-bezier(.4,0,.2,1); }
+        100%{ transform:scale(1) rotate(0deg); }
+      }
+      @keyframes jn75-heroact-h1-fade{
+        from{ opacity:0; }
+        to  { opacity:1; }
+      }
+      /* 오른쪽에서 날아와 제자리보다 2.4% 더 갔다가 되돌아오기
+         h1과 동일하게 되돌아오는 경계에서 속도가 0이라 꺾임이 없다 */
+      @keyframes jn75-heroact-h2-fly{
+        0%  { transform:translateX(74%) rotate(5.5deg);
+              animation-timing-function:cubic-bezier(.12,.72,.34,1); }
+        58% { transform:translateX(-2.4%) rotate(-1.2deg);
+              animation-timing-function:cubic-bezier(.4,0,.2,1); }
+        100%{ transform:translateX(0) rotate(0deg); }
+      }
+      @keyframes jn75-heroact-h2-fade{
+        from{ opacity:0; }
+        to  { opacity:1; }
+      }
+
+      @media (prefers-reduced-motion: reduce){
+        .contents_div .jn75-heroact__h1,
+        .contents_div .jn75-heroact__h2,
+        .contents_div .jn75-heroact.jn75-heroact--play .jn75-heroact__h1,
+        .contents_div .jn75-heroact.jn75-heroact--play .jn75-heroact__h2{
+          animation:none !important;
+          opacity:1 !important;
+          transform:none !important;
+        }
+      }
+      </style>
+
+      <div class="jn75-heroact" aria-label="한 컷 브리핑 · 위클리 zip 7월 5주 issue · 전남광주통합특별시" role="img">
+        <img class="jn75-heroact__layer jn75-heroact__bg" src="img/히어로배경.webp" itemprop="image"
+             width="1600" height="1700"
+             sizes="(max-width: 800px) 100vw, 800px"
+             fetchpriority="high" loading="eager" decoding="sync" alt="">
+        <img class="jn75-heroact__layer jn75-heroact__h1" src="img/h1_1.webp"
+             width="1600" height="1700"
+             sizes="(max-width: 800px) 100vw, 800px"
+             fetchpriority="high" loading="eager" decoding="sync" alt="">
+        <img class="jn75-heroact__layer jn75-heroact__h2" src="img/h1_2.webp"
+             width="1600" height="1700"
+             sizes="(max-width: 800px) 100vw, 800px"
+             fetchpriority="high" loading="eager" decoding="sync" alt="">
+      </div>
+
+      <script>
+      (function(){
+        /* ── 설정 ──────────────────────────────────────────────
+           LOOP_MS : 한 사이클의 총 길이(ms). 애니메이션 자체는 약 1.8초,
+                     나머지는 멈춰 있는 시간. 0으로 두면 1회만 재생.
+           재생 조건: 이미지 로딩 완료 + 히어로가 실제 뷰포트에 들어옴
+                     (페이지 접속 시점이 아니라 스크롤로 도달했을 때 시작)
+        ─────────────────────────────────────────────────────── */
+        var LOOP_MS = 4200;
+        var ENTER_RATIO = 0.35;   /* 히어로가 이 비율 이상 보이면 재생 시작 */
+
+        var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        var stages = document.querySelectorAll('.contents_div .jn75-heroact');
+        Array.prototype.forEach.call(stages, function(stage){
+          if (stage.dataset.heroactInit) return;
+          stage.dataset.heroactInit = '1';
+
+          var timer   = null;
+          var visible = false;   /* 뷰포트 진입 여부 — 진입 전에는 절대 재생하지 않음 */
+          var ready   = false;   /* 이미지 로딩 완료 여부 */
+
+          function play(){
+            stage.classList.remove('jn75-heroact--play');
+            void stage.offsetWidth;              /* 리플로우로 애니메이션 리셋 */
+            stage.classList.add('jn75-heroact--play');
+          }
+
+          function schedule(){
+            clearTimeout(timer);
+            if (!LOOP_MS || reduceMotion) return;
+            timer = setTimeout(function(){
+              if (visible && !document.hidden) play();
+              schedule();
+            }, LOOP_MS);
+          }
+
+          function stop(){ clearTimeout(timer); timer = null; }
+
+          /* 두 조건(로딩 완료 · 뷰포트 진입)이 모두 충족될 때만 시작 */
+          function start(){
+            if (!ready || !visible || document.hidden) return;
+            play();
+            schedule();
+          }
+
+          var imgs = Array.prototype.slice.call(stage.querySelectorAll('img'));
+          Promise.all(imgs.map(function(img){
+            return img.complete ? Promise.resolve()
+              : new Promise(function(res){ img.onload = img.onerror = res; });
+          })).then(function(){ ready = true; start(); });
+
+          if ('IntersectionObserver' in window){
+            new IntersectionObserver(function(entries){
+              entries.forEach(function(e){
+                if (e.isIntersecting){
+                  if (visible) return;           /* 이미 재생 중이면 중복 트리거 방지 */
+                  visible = true;
+                  start();
+                } else {
+                  visible = false;
+                  stop();
+                }
+              });
+            }, { threshold: ENTER_RATIO }).observe(stage);
+          } else {
+            /* IntersectionObserver 미지원 환경 폴백 — 스크롤 위치를 직접 계산 */
+            visible = false;
+            var onScroll = function(){
+              var r = stage.getBoundingClientRect();
+              var vh = window.innerHeight || document.documentElement.clientHeight;
+              var shown = Math.min(r.bottom, vh) - Math.max(r.top, 0);
+              var isIn = r.height > 0 && shown / r.height >= ENTER_RATIO;
+              if (isIn === visible) return;
+              visible = isIn;
+              if (isIn) start(); else stop();
+            };
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onScroll);
+            onScroll();
+          }
+
+          /* 탭이 백그라운드로 가면 대기, 돌아오면 재개 */
+          document.addEventListener('visibilitychange', function(){
+            if (document.hidden) stop();
+            else start();
+          });
+        });
+      })();
+      </script>
+    </div>
+    <!-- ===== jn75-heroact END ===== -->
+  </header>
+
+  <!-- ===== 앵커 링크 바 ===== -->
+  <nav class="jn75-nav" aria-label="이번 주 소식 바로가기">
+    <ul class="jn75-nav-list">
+      <li><button type="button" class="jn75-nav-btn" data-jn75-go="jn75-s1"><span class="jn75-nv-f">화제의 이슈</span><span class="jn75-nv-s">이슈</span></button></li>
+      <li><button type="button" class="jn75-nav-btn" data-jn75-go="jn75-s2"><span class="jn75-nv-f">굿 뉴스</span><span class="jn75-nv-s">굿뉴스</span></button></li>
+      <li><button type="button" class="jn75-nav-btn" data-jn75-go="jn75-s3"><span class="jn75-nv-f">놓치면 손해</span><span class="jn75-nv-s">혜택</span></button></li>
+      <li><button type="button" class="jn75-nav-btn" data-jn75-go="jn75-s4"><span class="jn75-nv-f">알아두면 쓸모</span><span class="jn75-nv-s">정보</span></button></li>
+      <li><button type="button" class="jn75-nav-btn" data-jn75-go="jn75-s5"><span class="jn75-nv-f">여름 즐길거리</span><span class="jn75-nv-s">여름</span></button></li>
+    </ul>
+  </nav>
+
+  <!-- ================= SECTION 01 ================= -->
+  <section class="jn75-sec jn75-sec--light g-down" id="jn75-s1" aria-labelledby="jn75-h2-1">
+    <div class="jn75-head">
+      <div class="jn75-kicker">
+        <span class="jn75-no">01</span>
+        <span class="jn75-eyebrow k1">HOT ISSUE 모음</span>
+      </div>
+      <h2 id="jn75-h2-1">이번 주 화제의 이슈</h2>
+    </div>
+
+    <div class="jn75-body">
+      <div class="jn75-card">
+        <span class="jn75-hd tl" aria-hidden="true"></span><span class="jn75-hd tr" aria-hidden="true"></span><span class="jn75-hd bl" aria-hidden="true"></span><span class="jn75-hd br" aria-hidden="true"></span>
+        <figure class="jn75-fig">
+          <img src="img/생명망 하나로.webp" alt="전남광주 59개 응급실을 연결하는 생명망 하나로 전략" loading="lazy" decoding="async">
+        </figure>
+        <div class="jn75-cardhead">
+          <span class="jn75-tag t-or">생명망 하나로</span>
+          <h3>이송부터 최종 진료까지 원스톱으로, <br class="jn75-br">전남광주 59개 응급실 하나로 연결</h3>
+        </div>
+        <hr class="jn75-rule">
+        <p>사는 곳에 관계없이 누구나 제때 치료받을 권리를 제공합니다. 전남광주통합특별시가 시민 생명의 골든타임을 지키기 위해 특별시 전역 59개 응급실을 하나로 연결하는 ‘생명망 하나로 3대 전략’을 추진합니다.</p>
+        <ul class="jn75-box">
+          <li><span class="jn75-chk" aria-hidden="true">✓</span><span><b>생명망 하나로 플랫폼</b> 운영</span></li>
+          <li><span class="jn75-chk" aria-hidden="true">✓</span><span><b>육해공 신속 이송체계</b> 마련</span></li>
+          <li><span class="jn75-chk" aria-hidden="true">✓</span><span><b>응급의료 통합컨트롤센터</b> 운영</span></li>
+        </ul>
+        <p>이젠 특별시 어디서나 골든타임 사수를 목표로 시민의 건강을 지킬 예정인데요. 의료 시설이 열악한 도서·산간의 이송 공백이 크게 개선될 것으로 기대되고 있어요.</p>
+        <!-- TODO: 링크 확정 후 href 교체 (원고상 ‘링크 추후 수정’) -->
+        <a class="jn75-cta" href="#" target="_blank" rel="noopener noreferrer"><span>생명망 하나로 전략 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="jn75-card">
+        <span class="jn75-hd tl" aria-hidden="true"></span><span class="jn75-hd tr" aria-hidden="true"></span><span class="jn75-hd bl" aria-hidden="true"></span><span class="jn75-hd br" aria-hidden="true"></span>
+        <figure class="jn75-fig">
+          <img src="img/명예시민.webp" alt="패트릭 쇼벨 명예시민 1호 선정" loading="lazy" decoding="async">
+        </figure>
+        <div class="jn75-cardhead">
+          <span class="jn75-tag t-sky">명예시민 1호</span>
+          <h3>명예시민이 된 프랑스 기자 이야기, <br class="jn75-br">전남광주통합특별시 1호 명예시민 탄생</h3>
+        </div>
+        <hr class="jn75-rule">
+        <p>1980년 5월 광주의 진실을 전 세계에 알린 프랑스 출신 기자 패트릭 쇼벨. 목숨을 걸고 기록한 사진 635점을 아무 조건 없이 5·18기록관에 기증한 그의 헌신에 감사하며, 전남광주통합특별시가 첫 번째 명예시민이라는 이름으로 감사의 마음을 전했어요.</p>
+        <p>이번 명예시민 1호 선정은 광주의 진실을 국제사회에 알리고 소중한 자료를 시민의 품으로 돌려준 그의 헌신을 기리는 의미랍니다.</p>
+        <ul class="jn75-box">
+          <li><span class="jn75-lb">대상</span><span>패트릭 쇼벨 (프랑스 출신 기자)</span></li>
+          <li><span class="jn75-lb">기증</span><span>5·18 기록사진 <b>635점</b>, <br class="jn75-br-m">아무 조건 없이 5·18기록관에 기증</span></li>
+          <li><span class="jn75-lb">의미</span><span>전남광주통합특별시 명예시민 <b>제1호</b></span></li>
+        </ul>
+        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=204&amp;movePage=2&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>명예시민 1호 이야기 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="jn75-card">
+        <span class="jn75-hd tl" aria-hidden="true"></span><span class="jn75-hd tr" aria-hidden="true"></span><span class="jn75-hd bl" aria-hidden="true"></span><span class="jn75-hd br" aria-hidden="true"></span>
+        <figure class="jn75-fig jn75-fig--wide">
+          <img src="img/여름방학틈새돌봄.webp" alt="여름방학 초등학생 틈새 돌봄 운영 모습" loading="lazy" decoding="async">
+        </figure>
+        <div class="jn75-cardhead">
+          <span class="jn75-tag t-pink">틈새돌봄</span>
+          <h3>전남광주는 돌봄에 진심이니까, <br class="jn75-br">여름방학에도 틈새 돌봄으로</h3>
+        </div>
+        <hr class="jn75-rule">
+        <p>보호자들의 돌봄 부담이 커지는 여름방학, 전남광주통합특별시가 ‘초등학생 틈새 돌봄 사업’으로 부담을 확실하게 덜어드립니다.</p>
+        <p>7월 27일부터 8월 셋째 주까지 방학 동안 지역아동센터(179개소)와 다함께돌봄센터(41개소)를 틈새돌봄센터, 점심 돌봄 센터로 지정해 돌봄 공백이 우려되는 4,500명에게 점심, 저녁 식사와 온종일 돌봄을 제공할 예정이거든요.</p>
+        <ul class="jn75-box">
+          <li><span class="jn75-lb">기간</span><span>7월 27일 ~ 8월 셋째 주</span></li>
+          <li><span class="jn75-lb">대상</span><span>초등학생이라면 누구나 이용 가능 <br class="jn75-br-m">(돌봄 공백 우려 <b>4,500명</b> 지원)</span></li>
+          <li><span class="jn75-lb">운영</span><span>지역아동센터 179개소, <br class="jn75-br-m">다함께돌봄센터 41개소</span></li>
+          <li><span class="jn75-lb">신청</span><span>틈새·점심 돌봄 센터로 직접 신청</span></li>
+          <li><span class="jn75-lb">문의</span><span>야간 돌봄 지원창구 <b>1522-1318</b></span></li>
+        </ul>
+        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=217&amp;movePage=1&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>틈새 돌봄 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ================= SECTION 02 ================= -->
+  <!-- 줄노트 섹션 상단 경계: 찢어진 종이 오버레이 -->
+  <div class="jn75-tear" aria-hidden="true"></div>
+
+  <section class="jn75-sec jn75-sec--paper" id="jn75-s2" aria-labelledby="jn75-h2-2">
+    <div class="jn75-head">
+      <div class="jn75-kicker">
+        <span class="jn75-no">02</span>
+        <span class="jn75-eyebrow k5">굿 뉴스는 널리 널리</span>
+      </div>
+      <h2 id="jn75-h2-2">널리 알리고 싶은 반가운 소식</h2>
+    </div>
+
+    <div class="jn75-body">
+      <div class="jn75-card">
+        <span class="jn75-hd tl" aria-hidden="true"></span><span class="jn75-hd tr" aria-hidden="true"></span><span class="jn75-hd bl" aria-hidden="true"></span><span class="jn75-hd br" aria-hidden="true"></span>
+        <figure class="jn75-fig">
+          <img src="img/강진 백련당과 연지.webp" alt="자연유산으로 지정된 강진 백련당과 연지" loading="lazy" decoding="async">
+        </figure>
+        <div class="jn75-cardhead">
+          <span class="jn75-tag t-gr">자연유산 신규 지정</span>
+          <h3>‘강진 백련당과 연지’에 경사 났어요, <br class="jn75-br">엣헴 이젠 자연유산이라고 불러주세요</h3>
+        </div>
+        <hr class="jn75-rule">
+        <p>전남광주통합특별시가 ‘강진 백련당과 연지’를 자연유산으로 신규 지정했습니다.</p>
+        <ul class="jn75-box">
+          <li><span class="jn75-lb">유래</span><span>16세기 중엽 원주이씨 강진 입향조 <b>이남</b>이 터를 잡으며 연못을 파고 연꽃을 심은 데서 시작</span></li>
+          <li><span class="jn75-lb">평가</span><span>전통 조경과 건축미의 조화, 수려한 생태경관, 뛰어난 차경 수법</span></li>
+        </ul>
+        <p>전통 누정 건축의 진수를 보여주고 있다는 평가를 받고 있어요.</p>
+        <a class="jn75-cta" href="https://news.jeonnam.go.kr/news/view.php?CSRFToken=86d440cb1031e5c844382a4d63919415fc2ca12690f9cb0cd707b2b2222ae387&amp;skey=%EA%B0%95%EC%A7%84&amp;x=0&amp;y=0&amp;section=92&amp;category=107&amp;no=9959" target="_blank" rel="noopener noreferrer"><span>강진 백련당과 연지 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="jn75-card">
+        <span class="jn75-hd tl" aria-hidden="true"></span><span class="jn75-hd tr" aria-hidden="true"></span><span class="jn75-hd bl" aria-hidden="true"></span><span class="jn75-hd br" aria-hidden="true"></span>
+        <div class="jn75-cardhead">
+          <span class="jn75-tag t-lv">트라우마치유센터</span>
+          <h3>아픔을 기억하고 회복을 함께합니다, <br class="jn75-br">여순 10·19트라우마치유센터 순천에 개소</h3>
+        </div>
+        <hr class="jn75-rule">
+        <p>여순 10·19사건 피해자와 유족의 심리 회복을 지원할 전담 치유기관인 ‘여순10·19트라우마치유센터’가 순천에 문을 열었어요.</p>
+        <p>트라우마치유센터는 국가폭력 피해자와 그 가족의 심리적 고통을 치유하고 건강한 삶의 회복을 지원하기 위해 설립된 행정안전부 산하 전문 치유기관인데요. 앞으로 여순10·19트라우마치유센터는 단순한 개인 상담 공간을 넘어 치유와 연대의 가치를 확산하는 ‘공동체 회복의 거점’ 역할을 할 계획이에요.</p>
+        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=203&amp;movePage=2&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>치유센터 개소 소식 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- 줄노트 섹션 하단 경계: 찢어진 종이 오버레이(상하 반전) -->
+  <div class="jn75-tear jn75-tear--flip" aria-hidden="true"></div>
+
+  <!-- ================= SECTION 03 ================= -->
+  <section class="jn75-sec jn75-sec--baby" id="jn75-s3" aria-labelledby="jn75-h2-3">
+    <div class="jn75-head">
+      <div class="jn75-kicker">
+        <span class="jn75-no">03</span>
+        <span class="jn75-eyebrow k2">챙기면 이득, 놓치면 손해</span>
+      </div>
+      <h2 id="jn75-h2-3">특별시민을 위한 특별한 혜택</h2>
+    </div>
+
+    <div class="jn75-body">
+      <div class="jn75-card">
+        <span class="jn75-hd tl" aria-hidden="true"></span><span class="jn75-hd tr" aria-hidden="true"></span><span class="jn75-hd bl" aria-hidden="true"></span><span class="jn75-hd br" aria-hidden="true"></span>
+        <figure class="jn75-fig">
+          <img src="img/숙박비 최대 12만원.webp" alt="전남광주관광플랫폼 JG TOUR 숙박할인 이벤트" loading="lazy" decoding="async">
+        </figure>
+        <div class="jn75-cardhead">
+          <span class="jn75-tag t-or">최대 12만원 할인</span>
+          <h3>숙박비 최대 12만원 할인? <br class="jn75-br">JG TOUR에서 확인하세요</h3>
+        </div>
+        <hr class="jn75-rule">
+        <p>전남관광플랫폼(JN TOUR)이 전남광주관광플랫폼(JG TOUR)으로 새롭게 태어났습니다. 새단장을 기념해 혜택 빵빵 이벤트를 준비했는데요.</p>
+        <ul class="jn75-box">
+          <li><span class="jn75-chk" aria-hidden="true">✓</span><span><b>남도 숙박할인 빅 이벤트</b> — 결제 금액에 따라 최대 12만원 숙박비 할인</span></li>
+          <li><span class="jn75-chk" aria-hidden="true">✓</span><span><b>전남 1+1 투어</b> — 요트, 두륜산 케이블카, 녹차 족욕카페 등 다양한 체험상품을 1명 가격으로 2명 이용</span></li>
+        </ul>
+        <p>숙박비 부담도 줄이고 매력만점 전남광주를 다양하게 만나요. 전남광주관광플랫폼에 많.관.부!</p>
+        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=207&amp;movePage=2&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>JG TOUR 혜택 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="jn75-card">
+        <span class="jn75-hd tl" aria-hidden="true"></span><span class="jn75-hd tr" aria-hidden="true"></span><span class="jn75-hd bl" aria-hidden="true"></span><span class="jn75-hd br" aria-hidden="true"></span>
+        <figure class="jn75-fig">
+          <img src="img/인강.webp" alt="청년 잡업(Job Up) 프로젝트 온라인 수강권 지원" loading="lazy" decoding="async">
+        </figure>
+        <div class="jn75-cardhead">
+          <span class="jn75-tag t-gr">인강 수강권 20만원</span>
+          <h3>미취업청년 1천 100명에 <br class="jn75-br">인강 수강권 쏜다!</h3>
+        </div>
+        <hr class="jn75-rule">
+        <p>전남에 거주하는 19세~34세 이하 미취업청년 1천 100명에게 1인당 20만원 상당의 온라인 수강권을 지원하는 ‘청년 잡업(Job Up) 프로젝트’를 시작합니다.</p>
+        <ul class="jn75-box">
+          <li><span class="jn75-lb">대상</span><span>전남 거주 19세~34세 이하 미취업청년 <b>1천 100명</b></span></li>
+          <li><span class="jn75-lb">지원</span><span>1인당 20만원 상당 온라인 수강권</span></li>
+          <li><span class="jn75-lb">신청 기간</span><span>2026. 07. 24.(금) ~ <b>선착순</b></span></li>
+          <li><span class="jn75-lb">신청 방법</span><span>광주전남청년통합 플랫폼 (youth.gwangju.go.kr)</span></li>
+        </ul>
+        <p>꿈도 Job고, 취업도 Job고! 온라인 강의 신청하고 필요한 분야의 지식을 넓혀보세요.</p>
+        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=176&amp;movePage=5&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>청년 잡업 프로젝트 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="jn75-card">
+        <span class="jn75-hd tl" aria-hidden="true"></span><span class="jn75-hd tr" aria-hidden="true"></span><span class="jn75-hd bl" aria-hidden="true"></span><span class="jn75-hd br" aria-hidden="true"></span>
+        <figure class="jn75-fig">
+          <img src="img/인문감성그게뭔데.webp" alt="광주도서관 여름 북캉스 프로그램" loading="lazy" decoding="async">
+        </figure>
+        <div class="jn75-cardhead">
+          <span class="jn75-tag t-sky">북캉스</span>
+          <h3>인문 감성 그게 뭔데…? <br class="jn75-br">알고 싶다면 광주도서관으로</h3>
+        </div>
+        <hr class="jn75-rule">
+        <p>시원한 에어컨 바람 밑에서 북캉스를 즐겨볼까? 광주의 도서관들이 방학을 맞아 책과 예술을 동시에 즐기는 도심 속 피서 프로그램을 선보입니다.</p>
+        <ul class="jn75-box">
+          <li><span class="jn75-chk" aria-hidden="true">✓</span><span><b>무등도서관</b> : 우리 아이 문해력 쑥쑥, 여름 독서 교실 등</span></li>
+          <li><span class="jn75-chk" aria-hidden="true">✓</span><span><b>산수도서관</b> : 북캉스 한국 문학, 2026 북스타트 부모교육 등</span></li>
+          <li><span class="jn75-chk" aria-hidden="true">✓</span><span><b>하남도서관</b> : 우리들의 행복 놀이터, 시니어 독서 인지 놀이 등</span></li>
+          <li><span class="jn75-chk" aria-hidden="true">✓</span><span><b>디지털정보도서관</b> : 웹툰 첫걸음, 여행으로 떠나는 세계 특집 영화 등</span></li>
+          <li><span class="jn75-chk" aria-hidden="true">✓</span><span><b>시립점자도서관</b> : 점자 교육, ‘오월, 소년의 기억을 걷다’ 점자 도서 제작 등</span></li>
+        </ul>
+        <p>프로그램 참여 신청 및 자세한 내용은 광주도서관 누리집에서 확인 가능합니다.</p>
+        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=218&amp;movePage=1&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>도서관 여름 프로그램 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================= SECTION 04 ================= -->
+  <section class="jn75-sec jn75-sec--light g-down" id="jn75-s4" aria-labelledby="jn75-h2-4">
+    <div class="jn75-head">
+      <div class="jn75-kicker">
+        <span class="jn75-no">04</span>
+        <span class="jn75-eyebrow k3">방학 숙제 겸 나들이 코스</span>
+      </div>
+      <h2 id="jn75-h2-4">알아 두면 쓸모 있는 특별시 정보</h2>
+    </div>
+
+    <div class="jn75-body">
+      <div class="jn75-card">
+        <span class="jn75-hd tl" aria-hidden="true"></span><span class="jn75-hd tr" aria-hidden="true"></span><span class="jn75-hd bl" aria-hidden="true"></span><span class="jn75-hd br" aria-hidden="true"></span>
+        <figure class="jn75-fig">
+          <img src="img/어린이 과학체험 교실.webp" alt="광주보건환경연구원 어린이 과학체험교실" loading="lazy" decoding="async">
+        </figure>
+        <div class="jn75-cardhead">
+          <span class="jn75-tag t-pc">어린이 과학체험</span>
+          <h3>여름방학 고민이 시작되었다면 <br class="jn75-br">어린이 과학체험 교실로</h3>
+        </div>
+        <hr class="jn75-rule">
+        <p>광주보건환경연구원이 여름방학을 맞아 어린이들에게 문을 활짝 열었어요. ‘어린이 과학체험교실’ 참여하세요.</p>
+        <ul class="jn75-box">
+          <li><span class="jn75-lb">대상</span><span>초등학교 2~6학년</span></li>
+          <li><span class="jn75-lb">일시</span><span>8/5(수), 8/6(목) 오전 10시 / 오후 2시</span></li>
+          <li><span class="jn75-lb">신청</span><span>전남광주통합특별시 누리집 ‘바로예약’</span></li>
+          <li><span class="jn75-lb">신청 기간</span><span>2026. 07. 28.(화) ~ 07. 31.(금)까지</span></li>
+        </ul>
+        <p>프로그램은 동물 교실과 보건 교실 두 가지인데요. 야생동물의 생태를 관찰하고 다친 야생동물의 구조와 치료를 참관하는 등 흥미로운 프로그램이 가득하답니다.</p>
+        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=182&amp;movePage=4&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>어린이 과학체험교실 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="jn75-card">
+        <span class="jn75-hd tl" aria-hidden="true"></span><span class="jn75-hd tr" aria-hidden="true"></span><span class="jn75-hd bl" aria-hidden="true"></span><span class="jn75-hd br" aria-hidden="true"></span>
+        <figure class="jn75-fig jn75-fig--wide">
+          <img src="img/민화.webp" alt="농업박물관 특별전 민화, 초록에 물들다" loading="lazy" decoding="async">
+        </figure>
+        <div class="jn75-cardhead">
+          <span class="jn75-tag t-gr">민화, 초록에 물들다</span>
+          <h3>만화 말고 민화입니다, <br class="jn75-br">민화전시 보고 가세요</h3>
+        </div>
+        <hr class="jn75-rule">
+        <p>현대적 감각으로 풀어낸 민화·채색화 감상하세요. 전남광주통합특별시농업박물관이 특별전 ‘민화, 초록에 물들다’를 선보입니다.</p>
+        <ul class="jn75-box">
+          <li><span class="jn75-lb">전시 기간</span><span>2026. 08. 13.(목)</span></li>
+          <li><span class="jn75-lb">전시 장소</span><span>전남광주통합특별시농업박물관 기획전시실</span></li>
+          <li><span class="jn75-lb">관람료</span><span><b>무료</b></span></li>
+        </ul>
+        <p>민화는 꽃과 나무, 새와 동물 등 친숙한 소재를 통해 건강과 장수, 부귀와 평안, 액운을 막고 복을 바라는 마음을 표현한 그림인데요. 일상의 평안을 바라는 민화 전시를 통해 일상에서 작은 위로와 기쁨을 느껴보세요.</p>
+        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=211&amp;movePage=1&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>민화 특별전 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="jn75-card">
+        <span class="jn75-hd tl" aria-hidden="true"></span><span class="jn75-hd tr" aria-hidden="true"></span><span class="jn75-hd bl" aria-hidden="true"></span><span class="jn75-hd br" aria-hidden="true"></span>
+        <div class="jn75-cardhead">
+          <span class="jn75-tag t-sky">해남우수영 체험</span>
+          <h3>주말엔 해남으로 고? <br class="jn75-br">친환경 체험프로그램 운영</h3>
+        </div>
+        <hr class="jn75-rule">
+        <p>휴가철을 맞아 해남우수영 관광지가 온가족을 위한 친환경 체험프로그램을 운영해요.</p>
+        <ul class="jn75-box">
+          <li><span class="jn75-lb">기간</span><span>2026. 07. 25.(토) ~ 08. 16.(일) <br class="jn75-br-m">매주 토·일</span></li>
+          <li><span class="jn75-lb">운영 시간</span><span>10:30 ~ 15:00</span></li>
+          <li><span class="jn75-lb">장소</span><span>명량대첩해전사기념전시관</span></li>
+          <li><span class="jn75-lb">프로그램</span><span>마리모 만들기, 울돌목 테라리움 만들기, 마크라메 도어벨 만들기, 커스텀 팔찌 만들기 등</span></li>
+          <li><span class="jn75-lb">체험비</span><span><b>1만원</b> (해남군 지원 5천원 + 개인 부담 5천원)</span></li>
+        </ul>
+        <p>역사와 문화, 자연이 어우러진 우수영 관광지에서 색다른 즐거움을 만나보세요!</p>
+        <a class="jn75-cta" href="https://news.jeonnam.go.kr/news/view.php?CSRFToken=86d440cb1031e5c844382a4d63919415fc2ca12690f9cb0cd707b2b2222ae387&amp;skey=%ED%95%B4%EB%82%A8&amp;x=0&amp;y=0&amp;section=94&amp;category=97&amp;no=9968" target="_blank" rel="noopener noreferrer"><span>해남우수영 체험프로그램 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 05 ================= -->
+  <section class="jn75-sec jn75-sec--board" id="jn75-s5" aria-labelledby="jn75-h2-5">
+    <div class="jn75-head">
+      <div class="jn75-kicker">
+        <span class="jn75-no">05</span>
+        <span class="jn75-eyebrow k4">올여름, 어디로 갈까</span>
+      </div>
+      <h2 id="jn75-h2-5">특별히 즐거운 특별시 뉴스</h2>
+    </div>
+
+    <div class="jn75-body">
+      <div class="jn75-card">
+        <span class="jn75-hd tl" aria-hidden="true"></span><span class="jn75-hd tr" aria-hidden="true"></span><span class="jn75-hd bl" aria-hidden="true"></span><span class="jn75-hd br" aria-hidden="true"></span>
+        <figure class="jn75-fig">
+          <img src="img/전남광주특별시 여름 여행지 추천-완도 명사십리해수욕장.webp" alt="전남광주 여름 추천 여행지 완도 명사십리해수욕장" loading="lazy" decoding="async">
+          <figcaption class="jn75-figcap">완도 명사십리해수욕장</figcaption>
+        </figure>
+        <div class="jn75-cardhead">
+          <span class="jn75-tag t-pink">여름 여행지</span>
+          <h3>바다, 숲, 계곡 골라가는 재미! <br class="jn75-br">올여름은 전남광주에서 즐기실게요</h3>
+        </div>
+        <hr class="jn75-rule">
+        <p>전남광주통합특별시가 추천하는 여름 특별 여행지는 어디일까? 다양한 매력의 해수욕장부터 머릿속까지 시원해지는 숲과 계곡, 낭만 가득한 도심 골목과 야경, 그리고 여름휴가를 빛낼 즐거운 축제와 이벤트까지!</p>
+        <p>어딜 선택해도 후회 없을 거예요. 끝내주는 여름 휴가를 보내고 싶다면 이번 여름은 전남광주통합특별시입니다. 카드뉴스로 소개해 드릴게요.</p>
+        <div class="jn75-ctas">
+          <a class="jn75-cta" href="https://blog.naver.com/jeonnam-gwangju-city/224356614466" target="_blank" rel="noopener noreferrer"><span>여름 여행지 카드뉴스 바로가기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+          <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=197&amp;movePage=3&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>여름 특별 여행지 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+
+      <div class="jn75-card">
+        <span class="jn75-hd tl" aria-hidden="true"></span><span class="jn75-hd tr" aria-hidden="true"></span><span class="jn75-hd bl" aria-hidden="true"></span><span class="jn75-hd br" aria-hidden="true"></span>
+        <figure class="jn75-fig">
+          <img src="img/도심 물놀이장.webp" alt="광주 도심 물놀이장 개장" loading="lazy" decoding="async">
+          <figcaption class="jn75-figcap">무안청사에 마련한 ‘SUMMER 워터스퀘어’</figcaption>
+        </figure>
+        <div class="jn75-cardhead">
+          <span class="jn75-tag t-sky">도심 물놀이장</span>
+          <h3>물놀이 멀리 갈 필요 있나요, <br class="jn75-br">도심 물놀이장 개장</h3>
+        </div>
+        <hr class="jn75-rule">
+        <p>바다나 계곡까지 멀리 갈 수 없다면 도심 물놀이장에서 무더위를 날려요! 광주 도심 물놀이장 6곳이 운영을 시작했습니다.</p>
+        <ul class="jn75-box">
+          <li><span class="jn75-lb">북구</span><span>광주시민의 숲, 중외공원</span></li>
+          <li><span class="jn75-lb">서구</span><span>상무시민공원, 쌍학어린이공원, 마륵공원</span></li>
+          <li><span class="jn75-lb">무안</span><span>무안청사 시민광장</span></li>
+          <li><span class="jn75-lb">기간</span><span>7월 18일 ~ 8월 16일, 전 시설 <b>무료</b></span></li>
+        </ul>
+        <p>방문 전 운영시간, 이용방법 등 자세한 내용 확인 바랍니다.</p>
+        <a class="jn75-cta" href="https://news.jeonnam.go.kr/news/view.php?section=92&amp;category=107&amp;no=9961" target="_blank" rel="noopener noreferrer"><span>도심 물놀이장 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+        <a class="jn75-cta jn75-cta--pick" href="https://m.blog.naver.com/sandcastles81/224357997602" target="_blank" rel="noopener noreferrer"><span>editor’s pick · 모두크루 안규선 님이 취재한 도심 속 무료 물놀이장</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="jn75-card">
+        <span class="jn75-hd tl" aria-hidden="true"></span><span class="jn75-hd tr" aria-hidden="true"></span><span class="jn75-hd bl" aria-hidden="true"></span><span class="jn75-hd br" aria-hidden="true"></span>
+        <figure class="jn75-fig">
+          <img src="img/노래자랑.webp" alt="신안 안좌도 퍼플섬 섬-셋 노래자랑" loading="lazy" decoding="async">
+        </figure>
+        <div class="jn75-cardhead">
+          <span class="jn75-tag t-lv">섬-셋 노래자랑</span>
+          <h3>우리 동네 노래 대장 모여라! <br class="jn75-br">섬-셋 노래자랑 개최</h3>
+        </div>
+        <hr class="jn75-rule">
+        <p>7월 31일 보라보라한 신안 안좌도 퍼플섬에서 ‘섬-셋 노래자랑’이 열려요. ‘섬-셋 노래자랑’은 섬(Island)·일몰(Sunset)·쉼(Rest)의 의미를 담은 주민·관광객 참여형 문화행사에요.</p>
+        <ul class="jn75-box">
+          <li><span class="jn75-lb">일시</span><span>7월 31일</span></li>
+          <li><span class="jn75-lb">장소</span><span>신안 안좌도 퍼플섬</span></li>
+          <li><span class="jn75-lb">공연</span><span>가수 <b>박구윤</b> 특별 공연</span></li>
+        </ul>
+        <p>아름다운 섬 풍경 속에서 음악을 즐기며 특별한 여름밤을 만끽할 수 있죠! 7월 31일에는 퍼플섬에서 만나요.</p>
+        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=179&amp;movePage=4&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>섬-셋 노래자랑 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 푸터 ===== -->
+  <footer class="jn75-foot">
+    <h2>이번 주 소식은 여기까지! <br class="jn75-br">다음 주에도 <em>유익한 정보</em>만 <br class="jn75-br-m">들고 찾아올게요 📮</h2>
+    <ul class="jn75-tags" aria-label="관련 태그">
+      <li>#모두의전남광주</li>
+      <li>#시정뉴스</li>
+      <li>#광주특별시뉴스</li>
+      <li>#전남광주통합특별시</li>
+      <li>#시정뉴스</li>
+      <li>#명예시민1호</li>
+      <li>#틈새돌봄</li>
+      <li>#JGTOUR</li>
+      <li>#청년잡업프로젝트</li>
+      <li>#전남광주여름여행</li>
+    </ul>
+  </footer>
+</article>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "전남광주통합특별시 한 컷 브리핑 — 위클리 zip 7월 5주",
+  "description": "명예시민 1호 탄생, 초등학생 틈새 돌봄, 여순10·19트라우마치유센터 개소, JG TOUR 숙박 할인, 청년 잡업 프로젝트 등 전남광주통합특별시 7월 5주 시정 소식 10건을 한 번에 정리했습니다.",
+  "inLanguage": "ko-KR",
+  "datePublished": "2026-07-26",
+  "author": { "@type": "Organization", "name": "전남광주통합특별시 언론담당관" },
+  "publisher": { "@type": "GovernmentOrganization", "name": "전남광주통합특별시" },
+  "keywords": "모두의전남광주, 위클리zip, 한컷브리핑, 전남광주통합특별시, 시정뉴스, 명예시민1호, 틈새돌봄, JG TOUR, 청년잡업프로젝트, 전남광주여름여행"
+}
+</script>
+
+<script>
+(function () {
+  var root = document.currentScript && document.currentScript.parentNode
+    ? document.currentScript.parentNode
+    : document.querySelector('.contents_div');
+  if (!root) return;
+
+  var wrap = root.querySelector('.jn75-wrap');
+  if (!wrap) return;
+
+  var reduce = window.matchMedia
+    && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var btns = wrap.querySelectorAll('.jn75-nav-btn');
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener('click', function () {
+      var target = wrap.querySelector('#' + this.getAttribute('data-jn75-go'));
+      if (!target) return;
+      target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    });
+  }
+
+  /* ---------- 라벨 캡슐 폭 맞춤 ----------
+     같은 정보박스(.jn75-box) 안의 라벨들을 가장 긴 라벨의 글자 폭에 맞추고,
+     모자란 만큼을 자간으로 균등 배분합니다. 글자 수가 모두 같으면 계산값이
+     0이 되어 아무 변화도 생기지 않습니다. */
+  function readLS(el) {
+    var v = window.getComputedStyle(el).letterSpacing;
+    return v === 'normal' ? 0 : (parseFloat(v) || 0);
+  }
+
+  function balanceLabels() {
+    var boxes = wrap.querySelectorAll('.jn75-box');
+    for (var b = 0; b < boxes.length; b++) {
+      var lbs = boxes[b].querySelectorAll('.jn75-lb');
+      if (lbs.length < 2) continue;
+
+      var items = [], i, lb, sp, target = 0;
+
+      for (i = 0; i < lbs.length; i++) {
+        lb = lbs[i];
+        sp = lb.firstElementChild;
+        if (!sp || !sp.hasAttribute('data-jn75-fit')) {
+          sp = document.createElement('span');
+          sp.setAttribute('data-jn75-fit', '');
+          sp.style.display = 'inline-block';
+          sp.textContent = (lb.textContent || '').replace(/^\s+|\s+$/g, '');
+          lb.textContent = '';
+          lb.appendChild(sp);
+        }
+        sp.style.letterSpacing = '';
+        sp.style.marginRight = '';
+        items.push({ sp: sp, len: sp.textContent.length, ls: readLS(lb) });
+      }
+
+      /* 실제 글자가 차지하는 폭 = 박스 폭 - 마지막 글자 뒤 자간 */
+      for (i = 0; i < items.length; i++) {
+        items[i].run = items[i].sp.getBoundingClientRect().width - items[i].ls;
+        if (items[i].run > target) target = items[i].run;
+      }
+
+      for (i = 0; i < items.length; i++) {
+        if (items[i].len < 2) continue;
+        var ls = items[i].ls + (target - items[i].run) / (items[i].len - 1);
+        items[i].sp.style.letterSpacing = ls.toFixed(3) + 'px';
+        items[i].sp.style.marginRight = (-ls).toFixed(3) + 'px';
+      }
+    }
+  }
+
+  balanceLabels();
+  window.addEventListener('load', balanceLabels);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(balanceLabels)['catch'](function () {});
+  }
+  var rt;
+  window.addEventListener('resize', function () {
+    clearTimeout(rt);
+    rt = setTimeout(balanceLabels, 150);
+  });
+})();
+</script>
+</div>
