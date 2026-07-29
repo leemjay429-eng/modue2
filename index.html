@@ -278,19 +278,35 @@
 
 /* CTA */
 .contents_div .jn75-cta{
+  --jn-cta-c:var(--jn-bl);      /* 버튼 본색 */
+  --jn-cta-tint:var(--jn-yl);   /* 호버 그라데이션 시작점 — 하이라이트 옐로 */
+  position:relative;
   display:flex; align-items:center; justify-content:space-between; gap:12px;
   margin-top:24px; padding:15px 20px;
-  background:var(--jn-bl); color:var(--jn-wt) !important; text-decoration:none;
+  background:var(--jn-cta-c); color:var(--jn-wt) !important; text-decoration:none;
   border:1px solid var(--jn-ink); border-radius:8px;
   font-size:16px; font-weight:700; letter-spacing:-.02em; word-break:keep-all;
-  transition:background-color .15s ease, transform .15s ease;
+  transition:color .18s ease;
 }
-.contents_div .jn75-cta:hover{background:var(--jn-pp); transform:translateY(-2px);}
+/* 호버 배경 — 노란색 → 흰색 그라데이션. 레이어를 페이드인해 부드럽게 전환 */
+.contents_div .jn75-cta::before{
+  content:''; position:absolute; inset:0; border-radius:7px; pointer-events:none;
+  background:linear-gradient(112deg, var(--jn-cta-tint) 0%, var(--jn-wt) 58%);
+  opacity:0; transition:opacity .22s ease;
+}
+/* 텍스트·화살표는 배경 레이어 위로 */
+.contents_div .jn75-cta > span{position:relative; z-index:1;}
+/* 호버 = 노랑→흰색 그라데이션 + 글자 먹색 + 화살표 이동 (테두리는 1px 유지) */
+.contents_div .jn75-cta:hover{color:var(--jn-ink) !important;}
+.contents_div .jn75-cta:hover::before{opacity:1;}
+.contents_div .jn75-cta:hover .jn75-ar{transform:translateX(5px);}
 /* editor’s pick 등 보조 CTA — 본 버튼과 구분되는 오렌지 */
-.contents_div a.jn75-cta--pick{background:var(--jn-or);}
-.contents_div a.jn75-cta--pick:hover{background:var(--jn-bl);}
+.contents_div a.jn75-cta--pick{--jn-cta-c:var(--jn-or);}
 .contents_div .jn75-cta:focus-visible{outline:3px solid var(--jn-ink); outline-offset:3px;}
-.contents_div .jn75-cta .jn75-ar{font-family:var(--jn-disp); font-size:17px; line-height:1; flex:0 0 auto;}
+.contents_div .jn75-cta .jn75-ar{
+  font-family:var(--jn-disp); font-size:17px; line-height:1; flex:0 0 auto;
+  transition:transform .22s cubic-bezier(.2,.7,.3,1);
+}
 /* 문구가 두 줄로 접혀도 화살표는 오른쪽 끝에 고정 */
 .contents_div .jn75-cta > span:not(.jn75-ar){flex:1 1 auto; min-width:0; text-align:left;}
 /* CTA 2개 — 웹에서 1행 2열, 높이는 flex stretch로 자동 균등 */
@@ -438,8 +454,10 @@
   .contents_div .jn75-tags li{font-size:10.5px; padding:5px 9px 6px;}
 }
 @media (prefers-reduced-motion:reduce){
-  .contents_div .jn75-cta{transition:none;}
-  .contents_div .jn75-cta:hover{transform:none;}
+  .contents_div .jn75-cta,
+  .contents_div .jn75-cta::before,
+  .contents_div .jn75-cta .jn75-ar{transition:none;}
+  .contents_div .jn75-cta:hover .jn75-ar{transform:none;}
 }
 </style>
 
@@ -658,7 +676,7 @@
       <li><button type="button" class="jn75-nav-btn" data-jn75-go="jn75-s1"><span class="jn75-nv-f">화제의 이슈</span><span class="jn75-nv-s">이슈</span></button></li>
       <li><button type="button" class="jn75-nav-btn" data-jn75-go="jn75-s2"><span class="jn75-nv-f">굿 뉴스</span><span class="jn75-nv-s">굿뉴스</span></button></li>
       <li><button type="button" class="jn75-nav-btn" data-jn75-go="jn75-s3"><span class="jn75-nv-f">놓치면 손해</span><span class="jn75-nv-s">혜택</span></button></li>
-      <li><button type="button" class="jn75-nav-btn" data-jn75-go="jn75-s4"><span class="jn75-nv-f">알아두면 쓸모</span><span class="jn75-nv-s">정보</span></button></li>
+      <li><button type="button" class="jn75-nav-btn" data-jn75-go="jn75-s4"><span class="jn75-nv-f">알아두면 유익</span><span class="jn75-nv-s">정보</span></button></li>
       <li><button type="button" class="jn75-nav-btn" data-jn75-go="jn75-s5"><span class="jn75-nv-f">여름 즐길거리</span><span class="jn75-nv-s">여름</span></button></li>
     </ul>
   </nav>
@@ -692,7 +710,7 @@
         </ul>
         <p>이젠 특별시 어디서나 골든타임 사수를 목표로 시민의 건강을 지킬 예정인데요. 의료 시설이 열악한 도서·산간의 이송 공백이 크게 개선될 것으로 기대되고 있어요.</p>
         <!-- TODO: 링크 확정 후 href 교체 (원고상 ‘링크 추후 수정’) -->
-        <a class="jn75-cta" href="#" target="_blank" rel="noopener noreferrer"><span>생명망 하나로 전략 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+        <a class="jn75-cta" href="#" target="_blank" rel="noopener noreferrer"><span>생명망 하나로 전략 자세히 보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
       </div>
 
       <div class="jn75-card">
@@ -712,29 +730,29 @@
           <li><span class="jn75-lb">기증</span><span>5·18 기록사진 <b>635점</b>, <br class="jn75-br-m">아무 조건 없이 5·18기록관에 기증</span></li>
           <li><span class="jn75-lb">의미</span><span>전남광주통합특별시 명예시민 <b>제1호</b></span></li>
         </ul>
-        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=204&amp;movePage=2&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>명예시민 1호 이야기 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=204&amp;movePage=2&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>명예시민 1호 이야기 자세히 보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
       </div>
 
       <div class="jn75-card">
         <span class="jn75-hd tl" aria-hidden="true"></span><span class="jn75-hd tr" aria-hidden="true"></span><span class="jn75-hd bl" aria-hidden="true"></span><span class="jn75-hd br" aria-hidden="true"></span>
         <figure class="jn75-fig jn75-fig--wide">
-          <img src="img/여름방학틈새돌봄.webp" alt="여름방학 초등학생 틈새 돌봄 운영 모습" loading="lazy" decoding="async">
+          <img src="img/여름방학틈새돌봄.webp" alt="여름방학 초등학생 틈새돌봄 운영 모습" loading="lazy" decoding="async">
         </figure>
         <div class="jn75-cardhead">
           <span class="jn75-tag t-pink">틈새돌봄</span>
-          <h3>전남광주는 돌봄에 진심이니까, <br class="jn75-br">여름방학에도 틈새 돌봄으로</h3>
+          <h3>전남광주는 돌봄에 진심이니까, <br class="jn75-br">여름방학에도 틈새돌봄으로</h3>
         </div>
         <hr class="jn75-rule">
-        <p>보호자들의 돌봄 부담이 커지는 여름방학, 전남광주통합특별시가 ‘초등학생 틈새 돌봄 사업’으로 부담을 확실하게 덜어드립니다.</p>
-        <p>7월 27일부터 8월 셋째 주까지 방학 동안 지역아동센터(179개소)와 다함께돌봄센터(41개소)를 틈새돌봄센터, 점심 돌봄 센터로 지정해 돌봄 공백이 우려되는 4,500명에게 점심, 저녁 식사와 온종일 돌봄을 제공할 예정이거든요.</p>
+        <p>보호자들의 돌봄 부담이 커지는 여름방학, 전남광주통합특별시가 ‘초등학생 틈새돌봄 사업’으로 부담을 확실하게 덜어드립니다.</p>
+        <p>7월 27일부터 8월 셋째 주까지 방학 동안 지역아동센터(179개소)와 다함께돌봄센터(41개소)를 틈새돌봄센터, 점심돌봄센터로 지정해 돌봄 공백이 우려되는 4,500명에게 점심, 저녁 식사와 온종일 돌봄을 제공할 예정이거든요.</p>
         <ul class="jn75-box">
           <li><span class="jn75-lb">기간</span><span>7월 27일 ~ 8월 셋째 주</span></li>
           <li><span class="jn75-lb">대상</span><span>초등학생이라면 누구나 이용 가능 <br class="jn75-br-m">(돌봄 공백 우려 <b>4,500명</b> 지원)</span></li>
           <li><span class="jn75-lb">운영</span><span>지역아동센터 179개소, <br class="jn75-br-m">다함께돌봄센터 41개소</span></li>
-          <li><span class="jn75-lb">신청</span><span>틈새·점심 돌봄 센터로 직접 신청</span></li>
+          <li><span class="jn75-lb">신청</span><span>틈새·점심돌봄센터로 직접 신청</span></li>
           <li><span class="jn75-lb">문의</span><span>야간 돌봄 지원창구 <b>1522-1318</b></span></li>
         </ul>
-        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=217&amp;movePage=1&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>틈새 돌봄 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=217&amp;movePage=1&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>틈새돌봄 자세히 보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
       </div>
 
     </div>
@@ -771,7 +789,7 @@
           <li><span class="jn75-lb">평가</span><span>전통 조경과 건축미의 조화, 수려한 생태경관, 뛰어난 차경 수법</span></li>
         </ul>
         <p>전통 누정 건축의 진수를 보여주고 있다는 평가를 받고 있어요.</p>
-        <a class="jn75-cta" href="https://news.jeonnam.go.kr/news/view.php?CSRFToken=86d440cb1031e5c844382a4d63919415fc2ca12690f9cb0cd707b2b2222ae387&amp;skey=%EA%B0%95%EC%A7%84&amp;x=0&amp;y=0&amp;section=92&amp;category=107&amp;no=9959" target="_blank" rel="noopener noreferrer"><span>강진 백련당과 연지 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+        <a class="jn75-cta" href="https://news.jeonnam.go.kr/news/view.php?CSRFToken=86d440cb1031e5c844382a4d63919415fc2ca12690f9cb0cd707b2b2222ae387&amp;skey=%EA%B0%95%EC%A7%84&amp;x=0&amp;y=0&amp;section=92&amp;category=107&amp;no=9959" target="_blank" rel="noopener noreferrer"><span>강진 백련당과 연지 자세히 보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
       </div>
 
       <div class="jn75-card">
@@ -783,7 +801,7 @@
         <hr class="jn75-rule">
         <p>여순 10·19사건 피해자와 유족의 심리 회복을 지원할 전담 치유기관인 ‘여순10·19트라우마치유센터’가 순천에 문을 열었어요.</p>
         <p>트라우마치유센터는 국가폭력 피해자와 그 가족의 심리적 고통을 치유하고 건강한 삶의 회복을 지원하기 위해 설립된 행정안전부 산하 전문 치유기관인데요. 앞으로 여순10·19트라우마치유센터는 단순한 개인 상담 공간을 넘어 치유와 연대의 가치를 확산하는 ‘공동체 회복의 거점’ 역할을 할 계획이에요.</p>
-        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=203&amp;movePage=2&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>치유센터 개소 소식 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=203&amp;movePage=2&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>치유센터 개소 소식 자세히 보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
@@ -819,7 +837,7 @@
           <li><span class="jn75-chk" aria-hidden="true">✓</span><span><b>전남 1+1 투어</b> — 요트, 두륜산 케이블카, 녹차 족욕카페 등 다양한 체험상품을 1명 가격으로 2명 이용</span></li>
         </ul>
         <p>숙박비 부담도 줄이고 매력만점 전남광주를 다양하게 만나요. 전남광주관광플랫폼에 많.관.부!</p>
-        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=207&amp;movePage=2&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>JG TOUR 혜택 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=207&amp;movePage=2&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>JG TOUR 혜택 자세히 보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
       </div>
 
       <div class="jn75-card">
@@ -840,7 +858,7 @@
           <li><span class="jn75-lb">신청 방법</span><span>광주전남청년통합 플랫폼 (youth.gwangju.go.kr)</span></li>
         </ul>
         <p>꿈도 Job고, 취업도 Job고! 온라인 강의 신청하고 필요한 분야의 지식을 넓혀보세요.</p>
-        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=176&amp;movePage=5&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>청년 잡업 프로젝트 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=176&amp;movePage=5&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>청년 잡업 프로젝트 자세히 보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
       </div>
 
       <div class="jn75-card">
@@ -862,7 +880,7 @@
           <li><span class="jn75-chk" aria-hidden="true">✓</span><span><b>시립점자도서관</b> : 점자 교육, ‘오월, 소년의 기억을 걷다’ 점자 도서 제작 등</span></li>
         </ul>
         <p>프로그램 참여 신청 및 자세한 내용은 광주도서관 누리집에서 확인 가능합니다.</p>
-        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=218&amp;movePage=1&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>도서관 여름 프로그램 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=218&amp;movePage=1&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>도서관 여름 프로그램 자세히 보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
@@ -897,7 +915,7 @@
           <li><span class="jn75-lb">신청 기간</span><span>2026. 07. 28.(화) ~ 07. 31.(금)까지</span></li>
         </ul>
         <p>프로그램은 동물 교실과 보건 교실 두 가지인데요. 야생동물의 생태를 관찰하고 다친 야생동물의 구조와 치료를 참관하는 등 흥미로운 프로그램이 가득하답니다.</p>
-        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=182&amp;movePage=4&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>어린이 과학체험교실 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=182&amp;movePage=4&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>어린이 과학체험교실 자세히 보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
       </div>
 
       <div class="jn75-card">
@@ -917,17 +935,17 @@
           <li><span class="jn75-lb">관람료</span><span><b>무료</b></span></li>
         </ul>
         <p>민화는 꽃과 나무, 새와 동물 등 친숙한 소재를 통해 건강과 장수, 부귀와 평안, 액운을 막고 복을 바라는 마음을 표현한 그림인데요. 일상의 평안을 바라는 민화 전시를 통해 일상에서 작은 위로와 기쁨을 느껴보세요.</p>
-        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=211&amp;movePage=1&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>민화 특별전 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=211&amp;movePage=1&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>민화 특별전 자세히 보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
       </div>
 
       <div class="jn75-card">
         <span class="jn75-hd tl" aria-hidden="true"></span><span class="jn75-hd tr" aria-hidden="true"></span><span class="jn75-hd bl" aria-hidden="true"></span><span class="jn75-hd br" aria-hidden="true"></span>
         <div class="jn75-cardhead">
           <span class="jn75-tag t-sky">해남우수영 체험</span>
-          <h3>주말엔 해남으로 고? <br class="jn75-br">친환경 체험프로그램 운영</h3>
+          <h3>주말엔 해남으로 고? <br class="jn75-br">친환경 체험 프로그램 운영</h3>
         </div>
         <hr class="jn75-rule">
-        <p>휴가철을 맞아 해남우수영 관광지가 온가족을 위한 친환경 체험프로그램을 운영해요.</p>
+        <p>휴가철을 맞아 해남우수영 관광지가 온가족을 위한 친환경 체험 프로그램을 운영해요.</p>
         <ul class="jn75-box">
           <li><span class="jn75-lb">기간</span><span>2026. 07. 25.(토) ~ 08. 16.(일) <br class="jn75-br-m">매주 토·일</span></li>
           <li><span class="jn75-lb">운영 시간</span><span>10:30 ~ 15:00</span></li>
@@ -936,7 +954,7 @@
           <li><span class="jn75-lb">체험비</span><span><b>1만원</b> (해남군 지원 5천원 + 개인 부담 5천원)</span></li>
         </ul>
         <p>역사와 문화, 자연이 어우러진 우수영 관광지에서 색다른 즐거움을 만나보세요!</p>
-        <a class="jn75-cta" href="https://news.jeonnam.go.kr/news/view.php?CSRFToken=86d440cb1031e5c844382a4d63919415fc2ca12690f9cb0cd707b2b2222ae387&amp;skey=%ED%95%B4%EB%82%A8&amp;x=0&amp;y=0&amp;section=94&amp;category=97&amp;no=9968" target="_blank" rel="noopener noreferrer"><span>해남우수영 체험프로그램 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+        <a class="jn75-cta" href="https://news.jeonnam.go.kr/news/view.php?CSRFToken=86d440cb1031e5c844382a4d63919415fc2ca12690f9cb0cd707b2b2222ae387&amp;skey=%ED%95%B4%EB%82%A8&amp;x=0&amp;y=0&amp;section=94&amp;category=97&amp;no=9968" target="_blank" rel="noopener noreferrer"><span>해남우수영 체험 프로그램 자세히 보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
@@ -965,10 +983,7 @@
         <hr class="jn75-rule">
         <p>전남광주통합특별시가 추천하는 여름 특별 여행지는 어디일까? 다양한 매력의 해수욕장부터 머릿속까지 시원해지는 숲과 계곡, 낭만 가득한 도심 골목과 야경, 그리고 여름휴가를 빛낼 즐거운 축제와 이벤트까지!</p>
         <p>어딜 선택해도 후회 없을 거예요. 끝내주는 여름 휴가를 보내고 싶다면 이번 여름은 전남광주통합특별시입니다. 카드뉴스로 소개해 드릴게요.</p>
-        <div class="jn75-ctas">
-          <a class="jn75-cta" href="https://blog.naver.com/jeonnam-gwangju-city/224356614466" target="_blank" rel="noopener noreferrer"><span>여름 여행지 카드뉴스 바로가기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
-          <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=197&amp;movePage=3&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>여름 특별 여행지 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
-        </div>
+        <a class="jn75-cta" href="https://blog.naver.com/jeonnam-gwangju-city/224356614466" target="_blank" rel="noopener noreferrer"><span>여름 여행지 카드뉴스 바로가기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
       </div>
 
       <div class="jn75-card">
@@ -990,7 +1005,7 @@
           <li><span class="jn75-lb">기간</span><span>7월 18일 ~ 8월 16일, 전 시설 <b>무료</b></span></li>
         </ul>
         <p>방문 전 운영시간, 이용방법 등 자세한 내용 확인 바랍니다.</p>
-        <a class="jn75-cta" href="https://news.jeonnam.go.kr/news/view.php?section=92&amp;category=107&amp;no=9961" target="_blank" rel="noopener noreferrer"><span>도심 물놀이장 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+        <a class="jn75-cta" href="https://news.jeonnam.go.kr/news/view.php?section=92&amp;category=107&amp;no=9961" target="_blank" rel="noopener noreferrer"><span>도심 물놀이장 자세히 보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
         <a class="jn75-cta jn75-cta--pick" href="https://m.blog.naver.com/sandcastles81/224357997602" target="_blank" rel="noopener noreferrer"><span>editor’s pick · 모두크루 안규선 님이 취재한 도심 속 무료 물놀이장</span><span class="jn75-ar" aria-hidden="true">→</span></a>
       </div>
 
@@ -1011,7 +1026,7 @@
           <li><span class="jn75-lb">공연</span><span>가수 <b>박구윤</b> 특별 공연</span></li>
         </ul>
         <p>아름다운 섬 풍경 속에서 음악을 즐기며 특별한 여름밤을 만끽할 수 있죠! 7월 31일에는 퍼플섬에서 만나요.</p>
-        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=179&amp;movePage=4&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>섬-셋 노래자랑 자세히보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
+        <a class="jn75-cta" href="https://www.jeonnam-gwangju.go.kr/boardView.do?pageId=jngj22&amp;boardId=JG_0000000003&amp;seq=179&amp;movePage=4&amp;recordCnt=10&amp;searchTy=TM" target="_blank" rel="noopener noreferrer"><span>섬-셋 노래자랑 자세히 보기</span><span class="jn75-ar" aria-hidden="true">→</span></a>
       </div>
     </div>
   </section>
@@ -1039,7 +1054,7 @@
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "전남광주통합특별시 한 컷 브리핑 — 위클리 zip 7월 5주",
-  "description": "명예시민 1호 탄생, 초등학생 틈새 돌봄, 여순10·19트라우마치유센터 개소, JG TOUR 숙박 할인, 청년 잡업 프로젝트 등 전남광주통합특별시 7월 5주 시정 소식 10건을 한 번에 정리했습니다.",
+  "description": "명예시민 1호 탄생, 초등학생 틈새돌봄, 여순10·19트라우마치유센터 개소, JG TOUR 숙박 할인, 청년 잡업 프로젝트 등 전남광주통합특별시 7월 5주 시정 소식 10건을 한 번에 정리했습니다.",
   "inLanguage": "ko-KR",
   "datePublished": "2026-07-26",
   "author": { "@type": "Organization", "name": "전남광주통합특별시 언론담당관" },
